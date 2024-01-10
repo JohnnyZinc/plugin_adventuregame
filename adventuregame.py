@@ -86,8 +86,8 @@ class TextBasedAdventureGame(Plugin):
                 if len(clist) > 1:
                     story = clist[1]
                 else:
-                    prompt = """提供一个故事背景，只介绍世界观，字数保持在100字以内。主人公从某个地方醒来。主人公是我。"""
-                    story = prompt
+                    # prompt = """提供一个故事背景，只介绍世界观，字数保持在100字以内。主人公从某个地方醒来。主人公是我。"""
+                    story = "你在树林里冒险，指不定会从哪里蹦出来一些奇怪的东西，你握紧手上的手枪，希望这次冒险能够找到一些值钱的东西，你往树林深处走去。"
                 self.games[sessionid] = TextBasedAdventureGame(bot, sessionid, story)
                 reply = Reply(ReplyType.INFO, "冒险开始：" + story)
                 e_context["reply"] = reply
