@@ -1,1 +1,1 @@
-from .TextBasedAdventureGame import *
+from .TextGame import *
