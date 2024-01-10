@@ -38,19 +38,7 @@ class StoryTeller:
             )
             self.first_interact = False
         else:
-            prompt = """继续，一次只需要续写四到六句话。""" + user_action
-        return prompt
-    
-    def background(self, user_action):
-        if user_action[-1] != "。":
-            user_action = user_action + "。"
-        if self.first_interact:
-            prompt = (
-                """提供一个故事背景，只介绍世界观，字数保持在100字以内。主人公从某个地方醒来。主人公是我。"""
-            )
-            self.first_interact = False
-        else:
-            prompt = """继续，一次只需要续写四到六句话。""" + user_action
+            prompt = user_action
         return prompt
 
 
@@ -98,8 +86,14 @@ class TextGame(Plugin):
                 if len(clist) > 1:
                     story = clist[1]
                 else:
-                    prompt = self.games[sessionid].background(content)
-                    story = prompt
+                    story = "
+当你醒来时，发现自己身处一个古老的城堡内。昏黄的灯光在石墙上投下阴影，墙壁上挂着古老的油画。一股潮湿的气息弥漫在空气中，让你感到一阵不安。
+
+你站在一个石头铺成的走廊中央，两边是黑暗的门廊。远处传来微弱的声音，仿佛有隐约的低语。地板下是一个石质的螺旋楼梯，通向未知的楼上。你的周围没有其他人，只有寂静和古老的氛围。
+
+你能听到墙角传来的微弱声音，似乎是某种生物的悉悉索索声。你也能感受到一种奇怪的能量，使你的皮肤微微发麻。
+
+在这神秘的城堡中，你能做的事情有很多。请告诉我你想要做什么，或者询问我关于周围环境的更多信息。"
                 self.games[sessionid] = StoryTeller(bot, sessionid, story)
                 reply = Reply(ReplyType.INFO, "冒险开始：" + story)
                 e_context["reply"] = reply
